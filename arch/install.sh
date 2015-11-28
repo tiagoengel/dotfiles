@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# DOWNLOAD wget --no-check-certificate https://github.com/tiagoengel/dotfiles/archive/master.tar.gz
+
 . ../.functions
 . utils.sh
 
@@ -30,64 +32,23 @@ fi
 # Basic configs {{
 
   print_title "Basic configurations"
-
-  arch-chroot /mnt
-
-  read -p "Computer Name: " COMPUTER_NAME
-  echo "$COMPUTER_NAME" > /etc/hostname
-
-  # LOCALE
-  ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-  sed 's/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/g' /etc/locale.gen -i
-  locale-gen
-
-  echo "LANG=pt_BR.utf8" > /etc/locale.conf
-
-  echo "KEYMAP=us
-  FONT=lat9w-16
-  FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
-
-  systemctl enable NetworkManager
-
-  mkinitcpio -p linux
-
-  sumary "Basic configurations"
-  finish_function
-
-# }}
-
-# Default User {{
-
-  print_title "Default user"
-
-  read -p "User name:" $USERNAME
-  useradd -m -g users -G users,audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash "$USERNAME"
-  passwd "$USERNAME"
-  # Uncomment to allow members of group wheel to execute any command
-  sed -i '/%wheel ALL=(ALL) ALL/s/^#//' /etc/sudoers
-
-  sumary "Default user creation"
-  finish_function
-
-# }}
-
-# GRUB {{
- 
-  print_title "Grub"
   
-  pacman -S --noconfirm grub
-
-  grub-install --recheck /dev/sdx
-  grub-mkconfig -o /boot/grub/grub.cfg
-
-  sumary "Grub intallation"
-  finish_function
-# }}
+  # Copy to /mnt to use with arch-chroot
+  cp ./basic-configs.sh /mnt
+  arch-chroot /mnt ./basic-configs.sh
+  rm /mnt/basic-configs.sh
   
+  summary "Basic configurations"
+  finish_function
+
+# }}
+
 
 echo "All done! Use the 'post-install' script after reboot to configure the rest of the system."
 question_for_answer "Reboot now?"
-if [ "$OPTION" != "y" ]; then 
+if [ "$OPTION" == "y" ]; then 
   exit 1
 fi
+
+
 
