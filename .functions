@@ -1,0 +1,13 @@
+# check if the user is or not root, and exit if not 
+function check_user() {
+  if [ "$USER" != "root" ] ; then
+    echo "ATTENTION! Run this script as root"
+    exit 1
+  fi
+} 
+
+# ask a question and save the answer in the $OPTION variable
+function question_for_answer() {
+  read -p "$1 [y][n]: " OPTION
+  echo ""
+}
