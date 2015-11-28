@@ -26,6 +26,7 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
 # }}
 
 # Default User {{
+  
   echo "-----------------------------------------------------"
   read -p "USER NAME:" USERNAME
   useradd -m -g users -G users,audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash "$USERNAME"

@@ -32,23 +32,23 @@ fi
 # Basic configs {{
 
   print_title "Basic configurations"
+
+  genfstab -p /mnt >> /mnt/etc/fstab
   
   # Copy to /mnt to use with arch-chroot
   cp ./basic-configs.sh /mnt
   arch-chroot /mnt ./basic-configs.sh
   rm /mnt/basic-configs.sh
   
-  summary "Basic configurations"
+  sumary "Basic configurations"
   finish_function
 
 # }}
 
+print_line
 
 echo "All done! Use the 'post-install' script after reboot to configure the rest of the system."
 question_for_answer "Reboot now?"
 if [ "$OPTION" == "y" ]; then 
-  exit 1
+  reboot
 fi
-
-
-
