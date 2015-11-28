@@ -1,8 +1,8 @@
 # This script is intended to be used inside chroot
 
 # Basic configs {{
-
-  read -p "Computer Name: " COMPUTER_NAME
+  echo "-----------------------------------------------------"
+  read -p "COMPUTER NAME: " COMPUTER_NAME
   echo "$COMPUTER_NAME" > /etc/hostname
 
   # LOCALE
@@ -23,8 +23,8 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
 # }}
 
 # Default User {{
-
-  read -p "User name:" $USERNAME
+  echo "-----------------------------------------------------"
+  read -p "USER NAME:" USERNAME
   useradd -m -g users -G users,audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash "$USERNAME"
   passwd "$USERNAME"
   # Uncomment to allow members of group wheel to execute any command
@@ -36,7 +36,7 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
  
   pacman -S --noconfirm grub
 
-  grub-install --recheck /dev/sdx
+  grub-install --recheck /dev/sda
   grub-mkconfig -o /boot/grub/grub.cfg
 
 # }}
