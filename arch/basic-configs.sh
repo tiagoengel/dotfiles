@@ -20,6 +20,9 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
 
   mkinitcpio -p linux
 
+  echo "ROOT PASSWORD"
+  passwd
+
 # }}
 
 # Default User {{
