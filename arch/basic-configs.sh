@@ -36,6 +36,14 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
 
 # }}
 
+# MULTILIB {{
+
+  echo "[multilib]
+Include = /etc/pacman.d/mirrorlist
+" >> /etc/pacman.conf 
+
+# }}
+
 # GRUB {{
  
   pacman -S --noconfirm grub

@@ -3,6 +3,8 @@ function check_user() {
   if [ "$USER" != "root" ] ; then
     echo "ATTENTION! Run this script as root"
     exit 1
+  else 	   
+    USERNAME="$SUDO_USER"
   fi
 } 
 

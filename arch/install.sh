@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# partition disk - cfdisk
+# create file system - mkfs.ext4 
+# mount on /mnt
+
 # DOWNLOAD wget --no-check-certificate https://github.com/tiagoengel/dotfiles/archive/master.tar.gz
 
 . ../.functions
