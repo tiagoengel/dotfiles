@@ -24,22 +24,25 @@ finish_function
 print_title "YAOURT - https://wiki.archlinux.org/index.php/Yaourt"
 pacman -S --noconfirm base-devel yajl
 
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
-tar zxvf package-query.tar.gz
-cd package-query
-makepkg --noconfirm -si
-cd ..
-rm -fr package-query*
+su -l $USERNAME --command="
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz;
+tar zxvf package-query.tar.gz;
+cd package-query;
+makepkg --noconfirm -si;
+cd ..;
+rm -fr package-query*;
+"
 
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
-tar zxvf yaourt.tar.gz
-cd yaourt
-makepkg --noconfirm -si
-cd ..
-rm -fr yaourt*
+su -l $USERNAME --command="
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz;
+tar zxvf yaourt.tar.gz;
+cd yaourt;
+makepkg --noconfirm -si;
+cd ..;
+rm -fr yaourt*;
+"
 
 install_status
-
 sumary "Yaourt installation"
 finish_function
 
