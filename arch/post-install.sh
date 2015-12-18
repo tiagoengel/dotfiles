@@ -11,25 +11,33 @@ if [ "$OPTION" != "y" ]; then
   exit 1
 fi
 
+check_user
+
+
+print_title "BASIC TOOLS"
+pacman -S --noconfirm wget
+install_status
+sumary "Basic tools installation"
+finish_function
+
+
 print_title "YAOURT - https://wiki.archlinux.org/index.php/Yaourt"
 pacman -S --noconfirm base-devel yajl
 
-su -l $USERNAME --command="
-  wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz;
-  tar zxvf package-query.tar.gz;
-  cd package-query;
-  makepkg --noconfirm -si --asroot;
-  cd ..;
-  rm -fr package-query*
-"
-su -l $USERNAME --command="
-  wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz;
-  tar zxvf yaourt.tar.gz;
-  cd yaourt;
-  makepkg --noconfirm -si --asroot;
-  cd ..;
-  rm -fr yaourt*
-"
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
+tar zxvf package-query.tar.gz
+cd package-query
+makepkg --noconfirm -si
+cd ..
+rm -fr package-query*
+
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
+tar zxvf yaourt.tar.gz
+cd yaourt
+makepkg --noconfirm -si
+cd ..
+rm -fr yaourt*
+
 install_status
 
 sumary "Yaourt installation"
