@@ -2,7 +2,7 @@
 
 function install_package() {
   PACKAGE=$(find -name "*.pkg.tar.xz")
-  pacman -U --noconfirm "$PACKAGE"
+  pacman -U --noconfirm "$PACKAGE" 
 }
 
 function question_for_answer() {

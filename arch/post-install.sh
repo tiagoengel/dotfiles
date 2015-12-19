@@ -30,6 +30,7 @@ tar zxvf package-query.tar.gz;
 cd package-query;
 makepkg --noconfirm;
 "
+cd /home/$USERNAME/package-query
 install_package
 cd ..
 rm -fr package-query*
@@ -40,6 +41,7 @@ tar zxvf yaourt.tar.gz;
 cd yaourt;
 makepkg --noconfirm;
 "
+cd /home/$USERNAME/yaourt
 install_package
 cd ..
 rm -fr yaourt*
