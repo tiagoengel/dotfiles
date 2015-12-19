@@ -13,3 +13,10 @@ function question_for_answer() {
   read -p "$1 [y][n]: " OPTION
   echo ""
 }
+
+# Add a entry in the .hashs file
+function add_hash() {
+  echo "hash -d $1=$PWD" >> ~/.hashs
+}
+
+

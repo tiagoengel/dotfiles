@@ -1,0 +1,5 @@
+alias h=history
+alias meldi="meld ~/temp/cmp/file1 ~/temp/cmp/file2"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
