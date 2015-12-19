@@ -28,43 +28,45 @@ su -l $USERNAME --command="
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz;
 tar zxvf package-query.tar.gz;
 cd package-query;
-makepkg --noconfirm -si;
-cd ..;
-rm -fr package-query*;
+makepkg --noconfirm;
 "
+install_package
+cd ..
+rm -fr package-query*
 
 su -l $USERNAME --command="
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz;
 tar zxvf yaourt.tar.gz;
 cd yaourt;
-makepkg --noconfirm -si;
-cd ..;
-rm -fr yaourt*;
+makepkg --noconfirm;
 "
+install_package
+cd ..
+rm -fr yaourt*
 
 install_status
 sumary "Yaourt installation"
 finish_function
 
-print_title "INTEL GPU DRIVER"
-pacman -S --noconfirm xf86-video-intel
-install_status
-sumary "Intel GPU driver installation"
+# print_title "INTEL GPU DRIVER"
+# pacman -S --noconfirm xf86-video-intel
+# install_status
+# sumary "Intel GPU driver installation"
 
 
-print_title "NVIDIA GPU DRIVER"
-pacman -S --noconfirm libvdpau nvidia nvidia-utils
-install_status
-sumary "Intel GPU driver installation"
+# print_title "NVIDIA GPU DRIVER"
+# pacman -S --noconfirm libvdpau nvidia nvidia-utils
+# install_status
+# sumary "Intel GPU driver installation"
 
 
-print_title "BUMBLEBEE - support NVIDIA Optimus technology under Linux"
-pacman -Rdd --noconfirm lib32-nvidia-libgl
-pacman -S --noconfirm lib32-virtualgl lib32-nvidia-utils lib32-mesa-libgl bumblebee
-gpasswd -a user bumblebee
-systemctl enable bumblebee
-install_status
-sumary "BUMBLEBEE installation"
+# print_title "BUMBLEBEE - support NVIDIA Optimus technology under Linux"
+# pacman -Rdd --noconfirm lib32-nvidia-libgl
+# pacman -S --noconfirm lib32-virtualgl lib32-nvidia-utils lib32-mesa-libgl bumblebee
+# gpasswd -a user bumblebee
+# systemctl enable bumblebee
+# install_status
+# sumary "BUMBLEBEE installation"
 
 print_title "XORG SERVER"
 pacman -S --noconfirm xorg-server xorg-server-utils
