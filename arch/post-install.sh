@@ -15,8 +15,13 @@ check_user
 
 
 print_title "BASIC TOOLS"
-pacman -S --noconfirm wget
-install_status
+pacman -S --noconfirm wget git emacs
+
+git config --global user.name "Tiago Engel"
+git config --global user.email "tiagohngl@gmail.com"
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+
 sumary "Basic tools installation"
 finish_function
 
@@ -46,8 +51,19 @@ install_package
 cd ..
 rm -fr yaourt*
 
-install_status
 sumary "Yaourt installation"
+finish_function
+
+
+print_title "ZSH"
+su -l $USERNAME --command="yaourt -S --noconfirm zsh oh-my-zsh-git powerline-fonts-git"
+sumary "Zsh installation"
+finish_function
+
+
+print_title "DEVELOPMENT TOOLS"
+pacman -S --noconfirm jdk7-openjdk jdk8-openjdk maven apache-ant scala sbt nodejs npm leiningen leiningen-completions 
+sumary "Development Tools"
 finish_function
 
 # print_title "INTEL GPU DRIVER"
@@ -72,22 +88,21 @@ finish_function
 
 print_title "XORG SERVER"
 pacman -S --noconfirm xorg-server xorg-server-utils
-install_status
 sumary "Xorg server installation"
 
 
-print_title "KDE"
-pacman -S --noconfirm plasma sddm
-systemctl enable sddm
-# Do not upgrade kde wallpapers 
-echo "
-IgnorePkg=plasma-workspace-wallpapers
-IgnorePkg=kde-wallpapers
-IgnorePkg=kdeartwork-wallpapers
-IgnorePkg=kdeartwork-weatherwallpapers
-" >> /etc/pacman.conf
-install_status
-sumary "Kde installation"
+# print_title "KDE"
+# pacman -S --noconfirm plasma sddm
+# systemctl enable sddm
+# # Do not upgrade kde wallpapers 
+# echo "
+# IgnorePkg=plasma-workspace-wallpapers
+# IgnorePkg=kde-wallpapers
+# IgnorePkg=kdeartwork-wallpapers
+# IgnorePkg=kdeartwork-weatherwallpapers
+# " >> /etc/pacman.conf
+# sumary "Kde installation"
+
 
 
 
