@@ -31,7 +31,7 @@ check_user
 # {{
 
   print_title "YAOURT - https://wiki.archlinux.org/index.php/Yaourt"
-  pacman -S --noconfirm wget base-devel yajl
+  pacman -S --noconfirm yajl
 
   su -l $USERNAME --command="
   wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz;
@@ -73,7 +73,9 @@ check_user
 # {{
 
   print_title "ZSH"
-  su -l $USERNAME --command="yaourt -S --noconfirm zsh oh-my-zsh-git powerline-fonts-git"
+  su -l $USERNAME --command="yaourt -S --noconfirm zsh zsh-completions oh-my-zsh-git powerline-fonts-git"
+  chsh -s /bin/zsh $USERNAME
+  chsh -s /bin/szh root
   sumary "Zsh installation"
   finish_function
 
@@ -83,8 +85,8 @@ check_user
 # {{
 
   print_title "DEVELOPMENT TOOLS"
-  pacman -S --noconfirm jdk7-openjdk jdk8-openjdk maven apache-ant scala sbt nodejs npm meld emacs ruby jruby rbenv
-  su -l $USERNAME --command="yaourt -S --noconfirm leiningen leiningen-completions sublime-text-dev" 
+  pacman -S --noconfirm jdk7-openjdk jdk8-openjdk maven apache-ant scala sbt nodejs npm meld emacs ruby jruby
+  su -l $USERNAME --command="yaourt -S --noconfirm rbenv leiningen leiningen-completions sublime-text-dev" 
 
   archlinux-java set jdk7-openjdk
 
@@ -166,7 +168,7 @@ vboxvideo
 # {{
 
   print_title "KDE"
-  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix
+  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
   systemctl enable sddm
   # Do not upgrade kde wallpapers 
   sed -i "/\[options\]/aIgnorePkg=plasma-workspace-wallpapers kde-wallpapers kdeartwork-wallpapers kdeartwork-weatherwallpapers" /etc/pacman.conf
@@ -186,7 +188,7 @@ vboxvideo
   
   print_title "DEFAULT APPS"
   su $USERNAME --command="yaourt -S --noconfirm spotify skype skypetab-ng-git google-chrome"
-  pacman -S --noconfirm vlc okular libreoffice-fresh libreoffice-fresh-pt-BR 
+  pacman -S --noconfirm vlc kdegraphics-okular libreoffice-fresh libreoffice-fresh-pt-BR 
   sumary "Default apps installation"
   finish_function
   
@@ -195,7 +197,7 @@ vboxvideo
 # Link dotfiles
 cd ..
 chmod +x bootstrap.sh
-su $USERNAME --command="./bootstrap.sh"
+su $USERNAME --command="../bootstrap.sh"
 
 git config --global user.name "Tiago Engel"
 git config --global user.email "tiagohngl@gmail.com"

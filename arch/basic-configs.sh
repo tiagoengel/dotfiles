@@ -41,12 +41,15 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
   echo "[multilib]
 Include = /etc/pacman.d/mirrorlist
 " >> /etc/pacman.conf 
+  pacman -Syu --noconfirm
+  pacman -R --noconfirm gcc
+  pacman -S --noconfirm gcc-multilib
 
 # }}
 
 # GRUB {{
  
-  pacman -Sy --noconfirm grub
+  pacman -S --noconfirm grub
 
   grub-install --recheck /dev/sda
   grub-mkconfig -o /boot/grub/grub.cfg
@@ -57,8 +60,7 @@ Include = /etc/pacman.d/mirrorlist
 
   # Check out the dotfiles repo to use in the next boot
   pacman -S --noconfirm git
-  mkdir -p /home/$USERNAME
-  git clone https://github.com/tiagoengel/dotfiles /home/$USERNAME/dotfiles
+  su -l $USERNAME --command="git clone https://github.com/tiagoengel/dotfiles"
 
 # }}
 
