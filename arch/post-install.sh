@@ -138,6 +138,24 @@ check_user
 
 # }}
 
+# {{
+
+  print_title "VIRTUALBOX"  
+  pacman -S --noconfirm virtualbox virtualbox-guest-utils    
+  gpasswd -a $USERNAME vboxusers
+  echo "
+vboxdrv
+vboxnetflt
+vboxnetadp
+vboxpci
+vboxguest
+vboxsf
+vboxvideo
+" > /etc/modules-load.d/virtualbox.conf 
+  install_status
+  sumary "Virtualbox installation"
+
+# }}
 
 # {{
 
@@ -162,6 +180,7 @@ check_user
   
   print_title "DEFAULT APPS"
   su $USERNAME --command="yaourt -S --noconfirm spotify skype skypetab-ng-git google-chrome"
+  pacman -S --noconfirm vlc okular libreoffice-fresh libreoffice-fresh-pt-BR 
   sumary "Default apps installation"
   finish_function
   

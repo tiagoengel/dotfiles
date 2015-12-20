@@ -8,6 +8,10 @@ set -e
 
 echo ''
 
+source .functions
+
+check_user
+
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
@@ -108,7 +112,7 @@ install_dotfiles () {
 
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 1 -name '.*' -not -path '*.git*') "$DOTFILES_ROOT/build.properties"
   do
-    dst="$HOME/$(basename $src)"
+    dst="/home/$USERNAME/$(basename $src)"
     link_file "$src" "$dst"
   done
 }
@@ -118,10 +122,10 @@ install_binaries () {
   
   local overwrite_all=false backup_all=false skip_all=false
   
-  for src in "bin/rdp/rdp.sh"
+  for src in $(find bin -name "*.sh")
   do
     src="$DOTFILES_ROOT/$src"
-    dst="/usr/bin/$(basename $src)"
+    dst="/usr/bin/$(basename ${src%.*})"
     link_file "$src" "$dst"
   done
 }
