@@ -46,7 +46,7 @@ Include = /etc/pacman.d/mirrorlist
 
 # GRUB {{
  
-  pacman -S --noconfirm grub
+  pacman -Sy --noconfirm grub
 
   grub-install --recheck /dev/sda
   grub-mkconfig -o /boot/grub/grub.cfg
