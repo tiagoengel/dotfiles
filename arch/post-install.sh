@@ -145,18 +145,29 @@ check_user
   pacman -S --noconfirm plasma sddm yakuake dolphin kate ark phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix
   systemctl enable sddm
   # Do not upgrade kde wallpapers 
-  # echo "
-  # IgnorePkg=plasma-workspace-wallpapers
-  # IgnorePkg=kde-wallpapers
-  # IgnorePkg=kdeartwork-wallpapers
-  # IgnorePkg=kdeartwork-weatherwallpapers
-  # " >> /etc/pacman.conf
+  sed -i "/\[options\]/aIgnorePkg=plasma-workspace-wallpapers kde-wallpapers kdeartwork-wallpapers kdeartwork-weatherwallpapers" /etc/pacman.conf
+  # Configure sddm
+  sddm --example-config > /etc/sddm.conf
+  # Better theme
+  sed -i -e '/Current=/ s/=.*/=breeze/' /etc/sddm.conf
+  sed -i -e '/CursorTheme=/ s/=.*/=breeze_cursors/' /etc/sddm.conf
+  # Autologin
+  sed -i -e '/User=/ s/=.*/=tiago/' /etc/sddm.conf
+  sed -i -e '/Session=/ s/=.*/=plasma.desktop/' /etc/sddm.conf
   sumary "Kde installation"
-
+  
 # }}
 
+# {{
+  
+  print_title "DEFAULT APPS"
+  su $USERNAME --command="yaourt -S --noconfirm spotify skype skypetab-ng-git google-chrome"
+  sumary "Default apps installation"
+  finish_function
+  
+# }}
 
-# Dotfiles
+# Link dotfiles
 cd ..
 chmod +x bootstrap.sh
 su $USERNAME --command="./bootstrap.sh"
@@ -165,3 +176,9 @@ git config --global user.name "Tiago Engel"
 git config --global user.email "tiagohngl@gmail.com"
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
+
+echo "All done!"
+question_for_answer "Reboot now?"
+if [ "$OPTION" == "y" ]; then 
+  reboot
+fi

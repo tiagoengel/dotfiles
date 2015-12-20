@@ -43,7 +43,7 @@ fi
   cp ./basic-configs.sh /mnt
   arch-chroot /mnt ./basic-configs.sh
   rm /mnt/basic-configs.sh
-  
+
   sumary "Basic configurations"
   finish_function
 

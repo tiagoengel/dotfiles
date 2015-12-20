@@ -53,5 +53,15 @@ Include = /etc/pacman.d/mirrorlist
 
 # }}
 
+# Dotfiles {{
+
+  # Check out the dotfiles repo to use in the next boot
+  pacman -S --noconfirm git
+  mkdir -p /home/$USERNAME
+  cd /home/$USERNAME
+  git clone https://github.com/tiagoengel/dotfiles
+
+# }}
+
 exit  
 
