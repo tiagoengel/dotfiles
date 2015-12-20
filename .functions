@@ -19,4 +19,27 @@ function add_hash() {
   echo "hash -d $1=$PWD" >> ~/.hashs
 }
 
+# Show all the files in a list and prompt the user to choose one
+function choose_a_file() {
+  prompt="$1"
+  options=( $(ls | grep "$2") )
+
+  if [ ${#options[@]} == 0 ]; then
+    echo ""
+    return
+  fi
+
+  PS3="$prompt "
+  select opt in "${options[@]}" "Quit" ; do 
+    if (( REPLY == 1 + ${#options[@]} )) ; then
+      exit
+
+    elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then	  
+      echo "$opt"     
+      return
+    fi
+  done 
+
+  echo ""	
+}
 

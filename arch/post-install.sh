@@ -16,7 +16,7 @@ check_user
 # {{
 
   print_title "BASIC TOOLS"
-  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune cowsay
+  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune cowsay freerdp the_silver_searcher
 
   systemctl enable dbus
   systemctl enable sshd
