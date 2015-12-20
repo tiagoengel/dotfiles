@@ -13,6 +13,4 @@ source $HOME/.functions
 source $HOME/.aliases
 source $HOME/.hashes
 
-eval "$(rbenv init -)"
-
 fortune | cowsay

@@ -126,6 +126,7 @@ install_binaries () {
   do
     src="$DOTFILES_ROOT/$src"
     dst="/usr/bin/$(basename ${src%.*})"
+    chmod +x "$src"
     link_file "$src" "$dst"
   done
 }

@@ -75,7 +75,7 @@ check_user
   print_title "ZSH"
   su -l $USERNAME --command="yaourt -S --noconfirm zsh zsh-completions oh-my-zsh-git powerline-fonts-git"
   chsh -s /bin/zsh $USERNAME
-  chsh -s /bin/szh root
+  chsh -s /bin/zsh root
   sumary "Zsh installation"
   finish_function
 
@@ -86,9 +86,9 @@ check_user
 
   print_title "DEVELOPMENT TOOLS"
   pacman -S --noconfirm jdk7-openjdk jdk8-openjdk maven apache-ant scala sbt nodejs npm meld emacs ruby jruby
-  su -l $USERNAME --command="yaourt -S --noconfirm rbenv leiningen leiningen-completions sublime-text-dev" 
+  su -l $USERNAME --command="yaourt -S --noconfirm leiningen sublime-text-dev" 
 
-  archlinux-java set jdk7-openjdk
+  archlinux-java set java-7-openjdk
 
   sumary "Development Tools"
   finish_function
@@ -114,35 +114,44 @@ check_user
   groupadd docker
   gpasswd -a $USERNAME docker
   sumary "Docker installation"
+  finish_function
 
 # }}
 
+# {{
 
-# print_title "INTEL GPU DRIVER"
-# pacman -S --noconfirm xf86-video-intel
-# install_status
-# sumary "Intel GPU driver installation"
+  print_title "INTEL GPU DRIVER"
+  pacman -S --noconfirm xf86-video-intel
+  sumary "Intel GPU driver installation"
+  finish_function
 
+# }}
 
-# print_title "NVIDIA GPU DRIVER"
-# pacman -S --noconfirm libvdpau nvidia nvidia-utils
-# install_status
-# sumary "Intel GPU driver installation"
+# {{
 
+  print_title "NVIDIA GPU DRIVER"
+  pacman -S --noconfirm libvdpau nvidia nvidia-utils
+  sumary "Intel GPU driver installation"
 
-# print_title "BUMBLEBEE - support NVIDIA Optimus technology under Linux"
-# pacman -Rdd --noconfirm lib32-nvidia-libgl
-# pacman -S --noconfirm lib32-virtualgl lib32-nvidia-utils lib32-mesa-libgl bumblebee
-# gpasswd -a user bumblebee
-# systemctl enable bumblebee
-# install_status
-# sumary "BUMBLEBEE installation"
+# }}
+
+# {{
+
+  print_title "BUMBLEBEE - support NVIDIA Optimus technology under Linux"
+  pacman -Rdd --noconfirm lib32-nvidia-libgl
+  pacman -S --noconfirm lib32-virtualgl lib32-nvidia-utils lib32-mesa-libgl bumblebee
+  gpasswd -a user bumblebee
+  systemctl enable bumblebee
+  sumary "BUMBLEBEE installation"
+
+# }}
 
 # {{
 
   print_title "XORG SERVER"
   pacman -S --noconfirm xorg-server xorg-server-utils xf86-video-vesa xorg-xinit xorg-xkill
   sumary "Xorg server installation"
+  finish_function
 
 # }}
 
@@ -162,13 +171,14 @@ vboxvideo
 " > /etc/modules-load.d/virtualbox.conf 
   install_status
   sumary "Virtualbox installation"
+  finish_function
 
 # }}
 
 # {{
 
   print_title "KDE"
-  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
+  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark kdegraphics-okular phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
   systemctl enable sddm
   # Do not upgrade kde wallpapers 
   sed -i "/\[options\]/aIgnorePkg=plasma-workspace-wallpapers kde-wallpapers kdeartwork-wallpapers kdeartwork-weatherwallpapers" /etc/pacman.conf
@@ -181,14 +191,15 @@ vboxvideo
   sed -i -e '/User=/ s/=.*/=tiago/' /etc/sddm.conf
   sed -i -e '/Session=/ s/=.*/=plasma.desktop/' /etc/sddm.conf
   sumary "Kde installation"
-  
+  finish_function
+
 # }}
 
 # {{
   
   print_title "DEFAULT APPS"
   su $USERNAME --command="yaourt -S --noconfirm spotify skype skypetab-ng-git google-chrome"
-  pacman -S --noconfirm vlc kdegraphics-okular libreoffice-fresh libreoffice-fresh-pt-BR 
+  pacman -S --noconfirm vlc libreoffice-fresh libreoffice-fresh-pt-BR 
   sumary "Default apps installation"
   finish_function
   
@@ -197,7 +208,7 @@ vboxvideo
 # Link dotfiles
 cd ..
 chmod +x bootstrap.sh
-su $USERNAME --command="../bootstrap.sh"
+. bootstrap.sh
 
 git config --global user.name "Tiago Engel"
 git config --global user.email "tiagohngl@gmail.com"

@@ -42,15 +42,16 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
 Include = /etc/pacman.d/mirrorlist
 " >> /etc/pacman.conf 
   pacman -Syu
-  yes | pacman -S gcc-multilib gcc-libs-multilib
+  pacman -S --noconfirm base-devel 
+  yes s | pacman -S gcc-multilib lib32-fakeroot lib32-libltdl
 
 # }}
 
 # GRUB {{
  
   pacman -S --noconfirm grub
-
-  grub-install --recheck /dev/sda
+  
+  grub-install --recheck /dev/sdb
   grub-mkconfig -o /boot/grub/grub.cfg
 
 # }}
