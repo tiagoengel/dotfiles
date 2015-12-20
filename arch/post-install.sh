@@ -16,16 +16,12 @@ check_user
 # {{
 
   print_title "BASIC TOOLS"
-  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune cowsay freerdp the_silver_searcher
+  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune-mod cowsay freerdp the_silver_searcher
 
   systemctl enable dbus
   systemctl enable sshd
 
   cp /etc/samba/smb.conf.default /etc/samba/smb.conf
-
-  # Battery improvement
-  su -l $USERNAME --command="yaourt -S --noconfirm tlp"
-  systemctl enable tlp
 
   sumary "Basic tools installation"
   finish_function
@@ -35,7 +31,7 @@ check_user
 # {{
 
   print_title "YAOURT - https://wiki.archlinux.org/index.php/Yaourt"
-  pacman -S --noconfirm base-devel yajl
+  pacman -S --noconfirm wget base-devel yajl
 
   su -l $USERNAME --command="
   wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz;
@@ -62,6 +58,16 @@ check_user
   sumary "Yaourt installation"
   finish_function
 
+# }}
+
+# {{
+
+  print_title "TLP - Battery improvement"
+  su -l $USERNAME --command="yaourt -S --noconfirm tlp"
+  systemctl enable tlp
+  sumary "Tlp installation"
+  finish_function
+  
 # }}
 
 # {{
