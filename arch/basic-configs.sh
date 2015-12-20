@@ -41,9 +41,8 @@ FONT_MAP=8859-1_to_uni" > /etc/vconsole.conf
   echo "[multilib]
 Include = /etc/pacman.d/mirrorlist
 " >> /etc/pacman.conf 
-  pacman -Syu --noconfirm
-  pacman -R --noconfirm gcc
-  pacman -S --noconfirm gcc-multilib
+  pacman -Syu
+  yes | pacman -S gcc-multilib gcc-libs-multilib
 
 # }}
 
