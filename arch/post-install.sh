@@ -100,7 +100,7 @@ check_user
 
   print_title "FONTS"
   pacman -S --noconfirm ttf-dejavu ttf-liberation
-  su -l $USERNAME --command="yaourt -S --noconfirm ttf-ms-fonts"
+  su -l $USERNAME --command="yes s | yaourt -S ttf-ms-fonts cairo-infinality fontconfig-infinality freetype2-infinality"
   sumary "Fonts installation"
   finish_function 
 
