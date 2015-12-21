@@ -43,7 +43,7 @@ Include = /etc/pacman.d/mirrorlist
 " >> /etc/pacman.conf 
   pacman -Syu
   pacman -S --noconfirm base-devel 
-  yes s | pacman -S gcc-multilib lib32-fakeroot lib32-libltdl
+  yes | pacman -S gcc-multilib lib32-fakeroot lib32-libltdl
 
 # }}
 

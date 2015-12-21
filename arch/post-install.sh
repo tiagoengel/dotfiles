@@ -132,6 +132,7 @@ check_user
   print_title "NVIDIA GPU DRIVER"
   pacman -S --noconfirm libvdpau nvidia nvidia-utils
   sumary "Intel GPU driver installation"
+  finish_function
 
 # }}
 
@@ -140,9 +141,10 @@ check_user
   print_title "BUMBLEBEE - support NVIDIA Optimus technology under Linux"
   pacman -Rdd --noconfirm lib32-nvidia-libgl
   pacman -S --noconfirm lib32-virtualgl lib32-nvidia-utils lib32-mesa-libgl bumblebee
-  gpasswd -a user bumblebee
-  systemctl enable bumblebee
-  sumary "BUMBLEBEE installation"
+  gpasswd -a $USERNAME bumblebee
+  systemctl enable bumblebeed
+  sumary "BUMBLEEE installation"
+  finish_function
 
 # }}
 
@@ -208,7 +210,7 @@ vboxvideo
 # Link dotfiles
 cd ..
 chmod +x bootstrap.sh
-. bootstrap.sh
+./bootstrap.sh
 
 git config --global user.name "Tiago Engel"
 git config --global user.email "tiagohngl@gmail.com"
