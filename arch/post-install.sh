@@ -210,13 +210,6 @@ cd ..
 chmod +x bootstrap.sh
 ./bootstrap.sh
 
-su -l $USERNAME --command="
-git config --global user.name 'Tiago Engel';
-git config --global user.email 'tiagohngl@gmail.com';
-git config --global credential.helper cache;
-git config --global credential.helper cache --timeout=3600;
-"
-
 echo "All done!"
 question_for_answer "Reboot now?"
 if [ "$OPTION" == "y" ]; then 
