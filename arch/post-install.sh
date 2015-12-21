@@ -151,7 +151,8 @@ check_user
 # {{
 
   print_title "XORG SERVER"
-  pacman -S --noconfirm xorg-server xorg-server-utils xf86-video-vesa xorg-xinit xorg-xkill
+  pacman -S --noconfirm xorg-server xorg-server-utils xf86-video-vesa xorg-xinit xorg-xkill xf86-input-synaptics
+  cp /usr/share/X11/xorg.conf.d/50-synaptics.conf /etc/X11/xorg.conf.d/
   sumary "Xorg server installation"
   finish_function
 
