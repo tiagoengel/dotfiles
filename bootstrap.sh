@@ -110,7 +110,7 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 1 -name '.*' -not -path '*.git*') "$DOTFILES_ROOT/build.properties"
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 1 -name '.*' -not -path '*.git') "$DOTFILES_ROOT/build.properties"
   do
     dst="/home/$USERNAME/$(basename $src)"
     link_file "$src" "$dst"
