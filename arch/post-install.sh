@@ -189,10 +189,7 @@ vboxvideo
   sddm --example-config > /etc/sddm.conf
   # Better theme
   sed -i -e '/Current=/ s/=.*/=breeze/' /etc/sddm.conf
-  sed -i -e '/CursorTheme=/ s/=.*/=breeze_cursors/' /etc/sddm.conf
-  # Autologin
-  sed -i -e '/User=/ s/=.*/=tiago/' /etc/sddm.conf
-  sed -i -e '/Session=/ s/=.*/=plasma.desktop/' /etc/sddm.conf
+  sed -i -e '/CursorTheme=/ s/=.*/=breeze_cursors/' /etc/sddm.conf  
   sumary "Kde installation"
   finish_function
 
