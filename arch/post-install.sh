@@ -168,8 +168,6 @@ vboxdrv
 vboxnetflt
 vboxnetadp
 vboxpci
-vboxguest
-vboxsf
 vboxvideo
 " > /etc/modules-load.d/virtualbox.conf 
   install_status

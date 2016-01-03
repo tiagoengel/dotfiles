@@ -1,3 +1,4 @@
 hash -d tomcat=/usr/local/share/tomcat
 hash -d stweb=/usr/local/share/systextilweb
 hash -d deploy_jboss=/usr/local/share/systextilweb/jboss-4.2.3.GA/server/default/deploy/
+hash -d storage=/mnt/storage
