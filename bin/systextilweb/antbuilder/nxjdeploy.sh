@@ -8,6 +8,10 @@ else
    BASE_DIR="$(dirname $0)"; 
 fi 
 
+if [ "$MODULO" == "" ]; then
+    MODULO="$(basename $PWD)"
+fi
+
 if [ "$MODULO" == "systextil" ]; then
    MODULO_XML="$BASE_DIR"/antsystextil
 else
