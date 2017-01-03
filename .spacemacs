@@ -32,6 +32,7 @@ values."
      markdown
      javascript
      clojure
+     elixir
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -206,6 +207,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (editorconfig-mode 1)
+  (add-hook 'hack-local-variables-hook (lambda () (setq show-trailing-whitespace f)))
 )
 
 ;; do NOT truncate lines

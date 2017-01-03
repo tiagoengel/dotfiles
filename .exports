@@ -1,8 +1,10 @@
 #!/bin/bash
 export LANG="pt_BR.utf8"
 export SBT_OPTS="$SBT_OPTS -Dsbt.jse.engineType=Node"
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/heroku/bin:$PATH
 export HISTSIZE=10000
 export TERM=xterm-256color
 export PATH_SYSTEXTIL=/home/tiago/workspace/systextil
+export JAVA_HOME=/usr/lib/jvm/default
+export GRADLE_HOME=/usr/share/java/gradle/
 
