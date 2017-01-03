@@ -7,7 +7,7 @@ print_title "Arch post-installation script.
 # This script will install and configure some useful programs.
 # It is not recommended run this script more than once."
 question_for_answer "Continue?"
-if [ "$OPTION" != "y" ]; then 
+if [ "$OPTION" != "y" ]; then
   exit 1
 fi
 
@@ -67,7 +67,7 @@ check_user
   systemctl enable tlp
   sumary "Tlp installation"
   finish_function
-  
+
 # }}
 
 # {{
@@ -86,7 +86,7 @@ check_user
 
   print_title "DEVELOPMENT TOOLS"
   pacman -S --noconfirm jdk7-openjdk jdk8-openjdk maven apache-ant scala sbt nodejs npm meld emacs ruby jruby
-  su -l $USERNAME --command="yaourt -S --noconfirm leiningen sublime-text-dev" 
+  su -l $USERNAME --command="yaourt -S --noconfirm leiningen sublime-text-dev"
 
   archlinux-java set java-7-openjdk
 
@@ -100,9 +100,9 @@ check_user
 
   print_title "FONTS"
   pacman -S --noconfirm ttf-dejavu ttf-liberation
-  su -l $USERNAME --command="yes s | yaourt -S ttf-ms-fonts cairo-infinality fontconfig-infinality freetype2-infinality"
+  su -l $USERNAME --command="yaourt -S --noconfirm ttf-ms-fonts cairo-infinality fontconfig-infinality"
   sumary "Fonts installation"
-  finish_function 
+  finish_function
 
 # }}
 
@@ -160,8 +160,8 @@ check_user
 
 # {{
 
-  print_title "VIRTUALBOX"  
-  pacman -S --noconfirm virtualbox virtualbox-guest-utils    
+  print_title "VIRTUALBOX"
+  pacman -S --noconfirm virtualbox virtualbox-guest-utils
   gpasswd -a $USERNAME vboxusers
   echo "
 vboxdrv
@@ -169,7 +169,7 @@ vboxnetflt
 vboxnetadp
 vboxpci
 vboxvideo
-" > /etc/modules-load.d/virtualbox.conf 
+" > /etc/modules-load.d/virtualbox.conf
   install_status
   sumary "Virtualbox installation"
   finish_function
@@ -181,26 +181,26 @@ vboxvideo
   print_title "KDE"
   pacman -S --noconfirm plasma sddm yakuake dolphin kate ark kdegraphics-okular phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
   systemctl enable sddm
-  # Do not upgrade kde wallpapers 
+  # Do not upgrade kde wallpapers
   sed -i "/\[options\]/aIgnorePkg=plasma-workspace-wallpapers kde-wallpapers kdeartwork-wallpapers kdeartwork-weatherwallpapers" /etc/pacman.conf
   # Configure sddm
   sddm --example-config > /etc/sddm.conf
   # Better theme
   sed -i -e '/Current=/ s/=.*/=breeze/' /etc/sddm.conf
-  sed -i -e '/CursorTheme=/ s/=.*/=breeze_cursors/' /etc/sddm.conf  
+  sed -i -e '/CursorTheme=/ s/=.*/=breeze_cursors/' /etc/sddm.conf
   sumary "Kde installation"
   finish_function
 
 # }}
 
 # {{
-  
+
   print_title "DEFAULT APPS"
   su $USERNAME --command="yaourt -S --noconfirm spotify skype skypetab-ng-git google-chrome"
-  pacman -S --noconfirm vlc libreoffice-fresh libreoffice-fresh-pt-BR 
+  pacman -S --noconfirm vlc libreoffice-fresh libreoffice-fresh-pt-BR
   sumary "Default apps installation"
   finish_function
-  
+
 # }}
 
 # Link dotfiles
@@ -210,6 +210,6 @@ chmod +x bootstrap.sh
 
 echo "All done!"
 question_for_answer "Reboot now?"
-if [ "$OPTION" == "y" ]; then 
+if [ "$OPTION" == "y" ]; then
   reboot
 fi
