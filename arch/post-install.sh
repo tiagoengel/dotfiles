@@ -161,7 +161,7 @@ check_user
 # {{
 
   print_title "VIRTUALBOX"
-  pacman -S --noconfirm virtualbox virtualbox-guest-utils
+  pacman -S --noconfirm virtualbox-host-modules-arch virtualbox virtualbox-guest-utils
   gpasswd -a $USERNAME vboxusers
   echo "
 vboxdrv
