@@ -7,4 +7,5 @@ export TERM=xterm-256color
 export PATH_SYSTEXTIL=/home/tiago/workspace/systextil
 export JAVA_HOME=/usr/lib/jvm/default
 export GRADLE_HOME=/usr/share/java/gradle/
-
+export CLOUDSDK_PYTHON=/usr/bin/python2
+export WINEARCH=win32

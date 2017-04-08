@@ -13,4 +13,14 @@ source $HOME/.functions
 source $HOME/.aliases
 source $HOME/.hashes
 
+#ASDF
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
+
 fortune | cowsay
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/tiago/google-cloud-sdk/path.zsh.inc' ]; then source '/home/tiago/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/tiago/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/tiago/google-cloud-sdk/completion.zsh.inc'; fi

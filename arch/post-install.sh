@@ -16,7 +16,7 @@ check_user
 # {{
 
   print_title "BASIC TOOLS"
-  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune-mod cowsay freerdp the_silver_searcher
+  pacman -S --noconfirm wget git curl bc rsync mlocate bash-completion vim tar gzip bzip2 unzip unrar p7zip dbus ntfs-3g ntfsprogs dosfstools openssh samba alsa-lib alsa-utils alsa-plugins xterm fortune-mod cowsay freerdp the_silver_searcher v4l2ucp
 
   systemctl enable dbus
   systemctl enable sshd
@@ -179,7 +179,7 @@ vboxvideo
 # {{
 
   print_title "KDE"
-  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark kdegraphics-okular phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
+  pacman -S --noconfirm plasma sddm yakuake dolphin kate ark phonon-qt5 phonon-qt5-gstreamer phonon-qt4 phonon-qt4-gstreamer kmix kde-gtk-config breeze-kde4 breeze breeze-gtk
   systemctl enable sddm
   # Do not upgrade kde wallpapers
   sed -i "/\[options\]/aIgnorePkg=plasma-workspace-wallpapers kde-wallpapers kdeartwork-wallpapers kdeartwork-weatherwallpapers" /etc/pacman.conf
